@@ -82,7 +82,7 @@ $main_content = ob_get_clean();
 utility::loadUserTemplate($dbs,$_SESSION['uid']);
 
 // print out the template
-if (file_exists($template_path = SB . $sysconf['admin_template']['dir'].'/'.$sysconf['admin_template']['theme'].'/index_template.inc.php')) {
+if (file_exists($template_path = SB . 'admin/' . $sysconf['admin_template']['dir'].'/'.$sysconf['admin_template']['theme'].'/index_template.inc.php')) {
     require $template_path;
 } else {
     require AQUA_THEMES . $sysconf['admin_template']['theme'].'/index_template.inc.php';
