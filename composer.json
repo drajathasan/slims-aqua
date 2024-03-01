@@ -6,7 +6,8 @@
     "autoload": {
         "psr-4": {
             "Aqua\\": "src/"
-        }
+        },
+        "files": ["src/helpers.php"]
     },
     "authors": [
         {
@@ -14,8 +15,5 @@
             "email": "drajathasan20@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {
-        "league/plates": "^3.5"
-    }
+    "minimum-stability": "stable"
 }

@@ -25,7 +25,7 @@ Plugins::hook(Plugins::ADMIN_SESSION_AFTER_START, function() {
     $pathInfo = pathinfo($trace['file']);
     $path = str_replace(SB,  AQUA_PAGES, $pathInfo['dirname']) . DS . $pathInfo['basename'];
 
-    if (file_exists($path)) {
+    if (preg_match('/admin/', dirname($trace['file'])) && file_exists($path)) {
         include $path;
         exit;
     }

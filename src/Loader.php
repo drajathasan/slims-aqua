@@ -3,19 +3,29 @@ namespace Aqua;
 
 class Loader
 {
-    private string $pathToLoad = '';
-    private array $info = [];
+    private string $buffer = '';
+    private string $base = '';
 
-    public function file(string $filename, array $dataToExtract = [])
+    public function __construct(string $pathToTemplate)
+    {
+        $this->base = $pathToTemplate . DS;
+    }
+
+    public function loadFile(string $filename, array $dataToExtract = [])
     {
         $fileInfo = pathinfo(Loader::pathConverter($filename));
 
         extract($dataToExtract);
-        if (file_exists($filePath = $this->pathToLoad . ($fileInfo['filename']??'uknowm'))) {
+        if (file_exists($filePath = $this->base . str_replace($this->base, '', $fileInfo['dirname']) . DS . ($fileInfo['filename']??'uknown') . '.php')) {
+            ob_end_clean();
+            ob_start();
             include $filePath;
+            $this->buffer .= ob_get_clean();
         } else {
             throw new \Exception("File $filePath not found!");
         }
+
+        return $this;
     }
 
     public static function pathConverter(string $input)
@@ -23,7 +33,20 @@ class Loader
         return str_replace('.', DS, trim($input, '.'));
     }
 
-    public function __set($key, $value) {
-        $this->info[$key] = $value;
+    public function truncateBuffer()
+    {
+        $this->buffer = '';
+    }
+
+    public function getBuffer()
+    {
+        $content = $this->buffer;
+        $this->truncateBuffer();
+        return $content;
+    }
+
+    public function __toString()
+    {
+        return $this->buffer;
     }
 }
