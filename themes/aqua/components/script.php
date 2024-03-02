@@ -2,139 +2,61 @@
 section('script', function() {
 ob_start();
 ?>
-<!--   Core JS Files   -->
-<script src="<?= aquaUrl('assets/js/core/jquery.3.2.1.min.js') ?>"></script>
-<script src="<?= aquaUrl('assets/js/core/popper.min.js') ?>"></script>
-<script src="<?= aquaUrl('assets/js/core/bootstrap.min.js') ?>"></script>
-
-<!-- jQuery UI -->
-<script src="<?= aquaUrl('assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') ?>"></script>
-<script src="<?= aquaUrl('assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js') ?>"></script>
-
-<!-- jQuery Scrollbar -->
-<script src="<?= aquaUrl('assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') ?>"></script>
-
-
-<!-- Chart JS -->
-<script src="<?= aquaUrl('assets/js/plugin/chart.js/chart.min.js') ?>"></script>
-
-<!-- jQuery Sparkline -->
-<script src="<?= aquaUrl('assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js') ?>"></script>
-
-<!-- Chart Circle -->
-<script src="<?= aquaUrl('assets/js/plugin/chart-circle/circles.min.js') ?>"></script>
-
-<!-- Datatables -->
-<script src="<?= aquaUrl('assets/js/plugin/datatables/datatables.min.js') ?>"></script>
-
-<!-- Bootstrap Notify -->
-<script src="<?= aquaUrl('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') ?>"></script>
-
-<!-- jQuery Vector Maps -->
-<script src="<?= aquaUrl('assets/js/plugin/jqvmap/jquery.vmap.min.js') ?>"></script>
-<script src="<?= aquaUrl('assets/js/plugin/jqvmap/maps/jquery.vmap.world.js') ?>"></script>
-
-<!-- Sweet Alert -->
-<script src="<?= aquaUrl('assets/js/plugin/sweetalert/sweetalert.min.js') ?>"></script>
-
-<!-- Atlantis JS -->
-<script src="<?= aquaUrl('assets/js/atlantis.min.js') ?>"></script>
-
-<!-- Atlantis DEMO methods, don't include it in your project! -->
-<!-- <script src="../assets/js/setting-demo.js"></script>
-<script src="../assets/js/demo.js"></script> -->
 <script>
-    Circles.create({
-        id:'circles-1',
-        radius:45,
-        value:60,
-        maxValue:100,
-        width:7,
-        text: 5,
-        colors:['#f1f1f1', '#FF9E27'],
-        duration:400,
-        wrpClass:'circles-wrp',
-        textClass:'circles-text',
-        styleWrapper:true,
-        styleText:true
-    })
-
-    Circles.create({
-        id:'circles-2',
-        radius:45,
-        value:70,
-        maxValue:100,
-        width:7,
-        text: 36,
-        colors:['#f1f1f1', '#2BB930'],
-        duration:400,
-        wrpClass:'circles-wrp',
-        textClass:'circles-text',
-        styleWrapper:true,
-        styleText:true
-    })
-
-    Circles.create({
-        id:'circles-3',
-        radius:45,
-        value:40,
-        maxValue:100,
-        width:7,
-        text: 12,
-        colors:['#f1f1f1', '#F25961'],
-        duration:400,
-        wrpClass:'circles-wrp',
-        textClass:'circles-text',
-        styleWrapper:true,
-        styleText:true
-    })
-
-    var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
-
-    var mytotalIncomeChart = new Chart(totalIncomeChart, {
+    $("#activeUsersChart").sparkline([112,109,120,107,110,85,87,90,102,109,120,99,110,85,87,94], {
+        type: 'bar',
+        height: '100',
+        barWidth: 9,
+        barSpacing: 10,
+        barColor: 'rgba(255,255,255,.3)'
+    });
+    
+    var multipleBarChart = document.getElementById('multipleBarChart').getContext('2d')
+    var myMultipleBarChart = new Chart(multipleBarChart, {
         type: 'bar',
         data: {
-            labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             datasets : [{
-                label: "Total Income",
-                backgroundColor: '#ff9e27',
-                borderColor: 'rgb(23, 125, 255)',
-                data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
+                label: "First time visitors",
+                backgroundColor: '#59d05d',
+                borderColor: '#59d05d',
+                data: [95, 100, 112, 101, 144, 159, 178, 156, 188, 190, 210, 245],
+            },{
+                label: "Visitors",
+                backgroundColor: '#fdaf4b',
+                borderColor: '#fdaf4b',
+                data: [145, 256, 244, 233, 210, 279, 287, 253, 287, 299, 312,356],
+            }, {
+                label: "Pageview",
+                backgroundColor: '#177dff',
+                borderColor: '#177dff',
+                data: [185, 279, 273, 287, 234, 312, 322, 286, 301, 320, 346, 399],
             }],
         },
         options: {
-            responsive: true,
+            responsive: true, 
             maintainAspectRatio: false,
             legend: {
-                display: false,
+                position : 'bottom'
             },
+            title: {
+                display: true,
+                text: 'Traffic Stats'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false
+            },
+            responsive: true,
             scales: {
-                yAxes: [{
-                    ticks: {
-                        display: false //this will remove only the label
-                    },
-                    gridLines : {
-                        drawBorder: false,
-                        display : false
-                    }
+                xAxes: [{
+                    stacked: true,
                 }],
-                xAxes : [ {
-                    gridLines : {
-                        drawBorder: false,
-                        display : false
-                    }
+                yAxes: [{
+                    stacked: true
                 }]
-            },
+            }
         }
-    });
-
-    $('#lineChart').sparkline([105,103,123,100,95,105,115], {
-        type: 'line',
-        height: '70',
-        width: '100%',
-        lineWidth: '2',
-        lineColor: '#ffa534',
-        fillColor: 'rgba(255, 165, 52, .14)'
     });
 </script>
 <?php
