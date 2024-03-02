@@ -21,13 +21,13 @@ ob_start();
                             <div class="row align-items-center">
                                 <div class="col-icon">
                                     <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                        <i class="flaticon-users"></i>
+                                        <i class="flaticon-agenda"></i>
                                     </div>
                                 </div>
                                 <div class="col col-stats ml-3 ml-sm-0">
                                     <div class="numbers">
-                                        <p class="card-category">Visitors</p>
-                                        <h4 class="card-title">1,294</h4>
+                                        <p class="card-category"><?= __('Total of Collections') ?></p>
+                                        <h4 class="card-title" id="biblio_total_all">0</h4>
                                     </div>
                                 </div>
                             </div>
@@ -40,13 +40,13 @@ ob_start();
                             <div class="row align-items-center">
                                 <div class="col-icon">
                                     <div class="icon-big text-center icon-info bubble-shadow-small">
-                                        <i class="flaticon-interface-6"></i>
+                                        <i class="flaticon-file"></i>
                                     </div>
                                 </div>
                                 <div class="col col-stats ml-3 ml-sm-0">
                                     <div class="numbers">
-                                        <p class="card-category">Subscribers</p>
-                                        <h4 class="card-title">1303</h4>
+                                        <p class="card-category"><?= __('Total of Items') ?></p>
+                                        <h4 class="card-title" id="item_total_all">0</h4>
                                     </div>
                                 </div>
                             </div>
@@ -59,13 +59,13 @@ ob_start();
                             <div class="row align-items-center">
                                 <div class="col-icon">
                                     <div class="icon-big text-center icon-success bubble-shadow-small">
-                                        <i class="flaticon-graph"></i>
+                                        <i class="flaticon-repeat"></i>
                                     </div>
                                 </div>
                                 <div class="col col-stats ml-3 ml-sm-0">
                                     <div class="numbers">
-                                        <p class="card-category">Sales</p>
-                                        <h4 class="card-title">$ 1,345</h4>
+                                        <p class="card-category"><?= __('Lent') ?></p>
+                                        <h4 class="card-title" id="item_total_lent">0</h4>
                                     </div>
                                 </div>
                             </div>
@@ -83,8 +83,8 @@ ob_start();
                                 </div>
                                 <div class="col col-stats ml-3 ml-sm-0">
                                     <div class="numbers">
-                                        <p class="card-category">Order</p>
-                                        <h4 class="card-title">576</h4>
+                                        <p class="card-category"><?= __('Available') ?></p>
+                                        <h4 class="card-title" id="item_total_available"></h4>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@ ob_start();
                 <div class="col-md-8">
                     <div class="card" style="height: 515px;">
                         <div class="card-header">
-                            <div class="card-title">Multiple Bar Chart</div>
+                            <div class="card-title"><?= __('Latest Transactions') ?></div>
                         </div>
                         <div class="card-body">
                             <div class="chart-container">

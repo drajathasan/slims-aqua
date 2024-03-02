@@ -72,7 +72,7 @@ if ($current_module AND $can_read) {
             .'</script>';
     }
 } else {
-    include 'default/home.php';
+    // include 'default/home.php';
     // for debugs purpose only
     // include 'modules/bibliography/index.php';
 }
