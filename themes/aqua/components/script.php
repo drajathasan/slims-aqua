@@ -21,96 +21,87 @@ ob_start();
             let a = getTotal('<?= SWB ?>index.php?p=api/loan/summary/<?= date('Y-m-d') ?>');
             a.then(res_total => {
 
-                let lineChartData = {
-                    labels: res.raw,
-                    datasets: [
-                        {
-                            fillColor: '#F4CC17',
-                            highlightFill: '#F4CC17',
-                            data: res_total.loan
-                        },
-                        {
-                            fillColor: '#459CBD',
-                            highlightFill: '#459CBD',
-                            data: res_total.return
-                        },
-                        {
-                            fillColor: '#5D45BD',
-                            highlightFill: '#5D45BD',
-                            data: res_total.extend
-                        },
-                    ]
-                }
+                console.log(res_total)
+                // let lineChartData = {
+                //     labels: res.raw,
+                //     datasets: [
+                //         {
+                //             fillColor: '#F4CC17',
+                //             highlightFill: '#F4CC17',
+                //             data: res_total.loan
+                //         },
+                //         {
+                //             fillColor: '#459CBD',
+                //             highlightFill: '#459CBD',
+                //             data: res_total.return
+                //         },
+                //         {
+                //             fillColor: '#5D45BD',
+                //             highlightFill: '#5D45BD',
+                //             data: res_total.extend
+                //         },
+                //     ]
+                // }
 
-                let c = $('#multipleBarChart');
-                let container = $(c).parent();
-                let ct = c.get(0).getContext("2d");
-                $(window).resize(respondCanvas);
+                // let c = $('#multipleBarChart');
+                // let container = $(c).parent();
+                // let ct = c.get(0).getContext("2d");
+                // $(window).resize(respondCanvas);
 
-                function respondCanvas() {
-                    c.attr('width', $(container).width()); //max width
-                    c.attr('height', $(container).height()); //max height
-                    //Call a function to redraw other content (texts, images etc)
-                    // new Chart(ct).Bar(lineChartData, {
-                    //     barShowStroke: false,
-                    //     barDatasetSpacing: 4,
-                    //     animation: {
-                    //         onProgress: function(animation) {
-                    //             progress.value = animation.animationObject.currentStep / animation.animationObject.numSteps;
-                    //         }
-                    //     }
-                    // });
-                }
+                // function respondCanvas() {
+                //     c.attr('width', $(container).width()); //max width
+                //     c.attr('height', $(container).height()); //max height
+                //     //Call a function to redraw other content (texts, images etc)
+                //     var myMultipleBarChart = new Chart(multipleBarChart.getContext('2d'), {
+                //         type: 'bar',
+                //         data: {
+                //             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                //             datasets : [{
+                //                 label: "First time visitors",
+                //                 backgroundColor: '#59d05d',
+                //                 borderColor: '#59d05d',
+                //                 data: [95, 100, 112, 101, 144, 159, 178, 156, 188, 190, 210, 245],
+                //             },{
+                //                 label: "Visitors",
+                //                 backgroundColor: '#fdaf4b',
+                //                 borderColor: '#fdaf4b',
+                //                 data: [145, 256, 244, 233, 210, 279, 287, 253, 287, 299, 312,356],
+                //             }, {
+                //                 label: "Pageview",
+                //                 backgroundColor: '#177dff',
+                //                 borderColor: '#177dff',
+                //                 data: [185, 279, 273, 287, 234, 312, 322, 286, 301, 320, 346, 399],
+                //             }],
+                //         },
+                //         options: {
+                //             responsive: true, 
+                //             maintainAspectRatio: false,
+                //             legend: {
+                //                 position : 'bottom'
+                //             },
+                //             title: {
+                //                 display: true,
+                //                 text: 'Traffic Stats'
+                //             },
+                //             tooltips: {
+                //                 mode: 'index',
+                //                 intersect: false
+                //             },
+                //             responsive: true,
+                //             scales: {
+                //                 xAxes: [{
+                //                     stacked: true,
+                //                 }],
+                //                 yAxes: [{
+                //                     stacked: true
+                //                 }]
+                //             }
+                //         }
+                //     });
 
-                respondCanvas();
+                // respondCanvas();
             })
         })
-        // var myMultipleBarChart = new Chart(multipleBarChart.getContext('2d'), {
-        //     type: 'bar',
-        //     data: {
-        //         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        //         datasets : [{
-        //             label: "First time visitors",
-        //             backgroundColor: '#59d05d',
-        //             borderColor: '#59d05d',
-        //             data: [95, 100, 112, 101, 144, 159, 178, 156, 188, 190, 210, 245],
-        //         },{
-        //             label: "Visitors",
-        //             backgroundColor: '#fdaf4b',
-        //             borderColor: '#fdaf4b',
-        //             data: [145, 256, 244, 233, 210, 279, 287, 253, 287, 299, 312,356],
-        //         }, {
-        //             label: "Pageview",
-        //             backgroundColor: '#177dff',
-        //             borderColor: '#177dff',
-        //             data: [185, 279, 273, 287, 234, 312, 322, 286, 301, 320, 346, 399],
-        //         }],
-        //     },
-        //     options: {
-        //         responsive: true, 
-        //         maintainAspectRatio: false,
-        //         legend: {
-        //             position : 'bottom'
-        //         },
-        //         title: {
-        //             display: true,
-        //             text: 'Traffic Stats'
-        //         },
-        //         tooltips: {
-        //             mode: 'index',
-        //             intersect: false
-        //         },
-        //         responsive: true,
-        //         scales: {
-        //             xAxes: [{
-        //                 stacked: true,
-        //             }],
-        //             yAxes: [{
-        //                 stacked: true
-        //             }]
-        //         }
-        //     }
-        // });
     }
 
     <?php if (count($_GET) === 0): ?>
